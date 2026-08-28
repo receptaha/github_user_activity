@@ -61,7 +61,7 @@ function printdiscussionevent(array $event): void
     $action = $event['payload']['action'];
     $discussion = $event['payload']['discussion'];
 
-    echo "{$action} a discussion in {$repo['name']} repository.\nDiscussion id: {$discussion['id']}\nTitle: {$discussion['title']}\nBody:{$discussion['body']}}";
+    echo "{$action} a discussion in {$repo['name']} repository.\nDiscussion id: {$discussion['id']}\nTitle: {$discussion['title']}\nBody:{$discussion['body']}";
 }
 
 function printforkevent(array $event): void
@@ -70,7 +70,7 @@ function printforkevent(array $event): void
     $action = $event['payload']['action'];
     $forkee = $event['payload']['forkee'];
 
-    echo "{$action} {$repo['name']} repository.\nForkee id: {$forkee['id']}\nName: {$forkee['name']}\nDescription:{$forkee['description']}}";
+    echo "{$action} {$repo['name']} repository.\nForkee id: {$forkee['id']}\nName: {$forkee['name']}\nDescription:{$forkee['description']}";
 }
 
 function printissuecommentevent(array $event): void
@@ -80,7 +80,7 @@ function printissuecommentevent(array $event): void
     $comment = $event['payload']['comment'];
     $issue = $event['payload']['issue'];
 
-    echo "{$action} an issue comment in {$repo['name']} repository.\nIssue id: {$issue['id']}\nTitle: {$issue['title']}\nComment:{$comment['body']}}";
+    echo "{$action} an issue comment in {$repo['name']} repository.\nIssue id: {$issue['id']}\nTitle: {$issue['title']}\nComment:{$comment['body']}";
 }
 
 function printissuesevent(array $event): void
@@ -89,7 +89,7 @@ function printissuesevent(array $event): void
     $action = $event['payload']['action'];
     $issue = $event['payload']['issue'];
 
-    $text = "{$action} an issue in {$repo['name']} repository.\nIssue id: {$issue['id']}\nTitle: {$issue['title']}}";
+    $text = "{$action} an issue in {$repo['name']} repository.\nIssue id: {$issue['id']}\nTitle: {$issue['title']}";
 
     if(isset($event['payload']['assignee'])) {
         $assigned = $event['payload']['assignee'];
