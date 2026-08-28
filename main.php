@@ -1,5 +1,7 @@
 <?php
 
+require_once "functions.php";
+
 $username = $argv[1];
 $page = (int) ($argv[2] ?? 1);
 $perPage = (int) ($argv[3] ?? 10);
@@ -24,11 +26,12 @@ try{
     }
     curl_close($ch);
 
-    $events = json_decode($response);
-    if(empty($events))
-        return;
+    $events = json_decode($response, true);
+    if(empty($events)) {
+        throw new \Exception("{$username} events are empty!");
+    }
 
-    print_r($events);
+    printEvents($events);
 }catch(\Exception $e)
 {
     echo $e->getMessage();
