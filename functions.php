@@ -20,7 +20,7 @@ function printEvent(array $event): void
     if(!function_exists($functionName)) {
         return;
     }
-    echo "--------NEW EVENT----------\n";
+    echo "--------{$event['created_at']}----------\n";
     $result = call_user_func_array(mb_strtolower($functionName, "utf8"), [$event]);
     if($result === false) {
         throw new \Exception("Function run failed! : {$functionName}");
@@ -43,7 +43,7 @@ function printcreateevent(array $event)
     $refType = $event['payload']['ref_type'];
     $ref = $event['payload']['ref'];
 
-    echo "created a new {$refType} in {$repo['name']} repository\nName: {$ref}";
+    echo "created {$ref} {$refType} in {$repo['name']} repository";
 }
 
 function printdeleteevent(array $event)
@@ -127,7 +127,7 @@ function printpullrequestevent(array $event): void
     $action = $event['payload']['action'];
     $pullRequest = $event['payload']['pull_request'];
 
-    echo "{$action} a pull request in {$repo['name']}->{$pullRequest['head']['ref']}.\nPr id: {$pullRequest['id']}\nTitle: {$pullRequest['title']}}\nBody: {$pullRequest['body']}";
+    echo "{$action} a pull request in {$repo['name']}->{$pullRequest['head']['ref']}";
 }
 
 function printpullrequestreviewevent(array $event): void
@@ -137,7 +137,7 @@ function printpullrequestreviewevent(array $event): void
     $pullRequest = $event['payload']['pull_request'];
     $review = $event['payload']['review'];
 
-    echo "{$action} a pull request view in {$repo['name']}->{$pullRequest['head']['ref']}.\nState: {$review['state']}";
+    echo "{$action} a pull request review in {$repo['name']}->{$pullRequest['head']['ref']}";
 }
 
 function printpullrequestreviewcommentevent(array $event)
