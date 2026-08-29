@@ -101,13 +101,17 @@ function printissuesevent(array $event): void
         $text .= "\nLabel: {$label['name']}";
     }
 
-    $assignees = $event['payload']['assignees'];
-    $countAssignees = count($assignees);
-    $text .= "\nAssigned user count: {$countAssignees}";
+    if(isset($event['payload']['assignees'])) {
+        $assignees = $event['payload']['assignees'];
+        $countAssignees = count($assignees);
+        $text .= "\nAssigned user count: {$countAssignees}";
+    }
 
-    $labels = $event['payload']['labels'];
-    $countLabels = count($labels);
-    $text .= "\nLabel count: {$countLabels}";
+    if(isset($event['payload']['labels'])) {
+        $labels = $event['payload']['labels'];
+        $countLabels = count($labels);
+        $text .= "\nLabel count: {$countLabels}";
+    }
 
     echo $text;
 }
@@ -135,7 +139,6 @@ function printpullrequestreviewevent(array $event): void
     $repo = $event['repo'];
     $action = $event['payload']['action'];
     $pullRequest = $event['payload']['pull_request'];
-    $review = $event['payload']['review'];
 
     echo "{$action} a pull request review in {$repo['name']}->{$pullRequest['head']['ref']}";
 }
